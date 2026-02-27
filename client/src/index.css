@@ -34,10 +34,10 @@
 }
 
 :root {
-  /* Warm off-white background */
-  --background: 40 33% 98%;
+  /* Softer, more elegant cream/tan background to make the logo pop */
+  --background: 35 30% 96%;
   /* Deep Navy Blue foreground */
-  --foreground: 214 73% 15%;
+  --foreground: 214 73% 12%;
   
   --card: 0 0% 100%;
   --card-foreground: 214 73% 15%;
