@@ -12,7 +12,16 @@ import design3 from "@/assets/images/design-3.png";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background relative">
+      {/* Watermarked Logo Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden opacity-[0.03]">
+        <img 
+          src={logoImg} 
+          alt="" 
+          className="w-[150%] max-w-none rotate-12 scale-150"
+        />
+      </div>
+
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border shadow-sm">
         <div className="container mx-auto px-4 h-24 flex items-center justify-between">
