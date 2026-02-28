@@ -9,6 +9,8 @@ import glasswareImg from "@/assets/images/glassware.png";
 import design1 from "@/assets/images/design-1.png";
 import design2 from "@/assets/images/design-2.png";
 import design3 from "@/assets/images/design-3.png";
+import design4 from "@/assets/images/design-4.png";
+import design5 from "@/assets/images/design-5.png";
 
 export default function Home() {
   return (
@@ -119,7 +121,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             <div className="group relative aspect-square overflow-hidden rounded-lg shadow-lg">
               <img src={design1} alt="Custom T-Shirt Design" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
@@ -136,6 +138,18 @@ export default function Home() {
               <img src={design3} alt="Custom Christmas Stocking" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
                 <p className="text-white font-serif text-xl font-bold">Hand-Finished Holiday Stockings</p>
+              </div>
+            </div>
+            <div className="group relative aspect-square overflow-hidden rounded-lg shadow-lg">
+              <img src={design4} alt="Custom Tote Bag" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
+                <p className="text-white font-serif text-xl font-bold">Embroidered Canvas Tote</p>
+              </div>
+            </div>
+            <div className="group relative aspect-square overflow-hidden rounded-lg shadow-lg">
+              <img src={design5} alt="Custom Sweatshirt" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
+                <p className="text-white font-serif text-xl font-bold">Bespoke Gold Emblem Sweatshirt</p>
               </div>
             </div>
           </div>
