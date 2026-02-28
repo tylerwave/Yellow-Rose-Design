@@ -18,7 +18,7 @@ export default function Home() {
         <img 
           src={logoImg} 
           alt="" 
-          className="w-[120%] max-w-none rotate-6 scale-125"
+          className="w-[150%] max-w-none rotate-6 scale-150"
         />
       </div>
 
