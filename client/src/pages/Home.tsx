@@ -2,7 +2,7 @@ import { Instagram, Facebook, Phone, Mail, MapPin, CheckCircle, Clock, Users, St
 import { useState } from "react";
 import { Link } from "wouter";
 
-import logoImg from "@/assets/images/logo_new.png";
+import logoImg from "@/assets/images/logo_final.png";
 import heroImg from "@/assets/images/hero.png";
 import apparelImg from "@/assets/images/apparel.png";
 import glasswareImg from "@/assets/images/glassware.png";
@@ -168,11 +168,11 @@ export default function Home() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="cursor-pointer group bg-transparent border-none p-0 flex items-center justify-center -ml-4"
           >
-            <div className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full shadow-2xl border-4 border-gold/50 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/70 group-hover:border-gold/90 bg-white">
+            <div className="w-[140px] h-[140px] md:w-[220px] md:h-[220px] rounded-full shadow-2xl border-4 border-gold/50 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/70 group-hover:border-gold/90 bg-white p-0">
               <img 
                 src={logoImg} 
                 alt="Yellow Rose Logo" 
-                className="w-full h-full object-cover contrast-[1.1] saturate-[1.2] brightness-[1.05] drop-shadow-xl" 
+                className="w-full h-full object-cover contrast-[1.15] saturate-[1.3] brightness-[1.05] drop-shadow-2xl" 
               />
             </div>
           </button>
