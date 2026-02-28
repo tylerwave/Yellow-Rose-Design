@@ -540,6 +540,33 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-2">
+                  <label className="text-sm font-bold text-primary/80 uppercase tracking-wider">Reference Images (Optional)</label>
+                  <div className="relative">
+                    <input 
+                      type="file" 
+                      multiple 
+                      accept="image/*"
+                      className="hidden" 
+                      id="file-upload"
+                      onChange={(e) => {
+                        const files = e.target.files;
+                        if (files && files.length > 0) {
+                          alert(`${files.length} file(s) selected. In this prototype, files are not actually uploaded to a server.`);
+                        }
+                      }}
+                    />
+                    <label 
+                      htmlFor="file-upload" 
+                      className="flex flex-col items-center justify-center w-full p-8 rounded-xl border-2 border-dashed border-border hover:border-secondary hover:bg-secondary/5 transition-all cursor-pointer bg-background/50 group"
+                    >
+                      <ImageIcon className="w-10 h-10 text-primary/30 group-hover:text-secondary mb-3 transition-colors" />
+                      <span className="text-sm font-bold text-primary/60 group-hover:text-primary transition-colors">Click to upload or drag and drop</span>
+                      <span className="text-xs text-primary/40 mt-1">PNG, JPG up to 10MB</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
                   <label className="text-sm font-bold text-primary/80 uppercase tracking-wider">Design Project Details</label>
                   <textarea rows={5} className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all resize-none bg-background/50" placeholder="Describe your vision (quantity, sizes, designs...)"></textarea>
                 </div>
