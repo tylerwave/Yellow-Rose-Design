@@ -166,13 +166,17 @@ export default function Home() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-4 cursor-pointer group bg-transparent border-none p-0"
+            className="flex flex-col items-center gap-1 cursor-pointer group bg-transparent border-none p-0"
           >
-            <div className="w-[72px] h-[72px] md:w-24 md:h-24 bg-white rounded-full p-2 shadow-md border border-gold/30 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-110 group-hover:shadow-gold/20">
-              <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
+            <div className="w-[84px] h-[84px] md:w-32 md:h-32 bg-white rounded-full p-2 shadow-xl border-2 border-gold/40 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/40 group-hover:border-gold/60">
+              <img 
+                src={logoImg} 
+                alt="Yellow Rose Logo" 
+                className="w-full h-full object-contain contrast-[1.15] saturate-[1.3] brightness-[1.05] drop-shadow-md" 
+              />
             </div>
-            <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-sm">
-              Yellow Rose <span className="text-secondary italic">Swag & Design, LLC</span>
+            <span className="font-serif text-sm md:text-base font-bold tracking-widest text-secondary uppercase drop-shadow-sm group-hover:text-white transition-colors">
+              Home
             </span>
           </button>
 
