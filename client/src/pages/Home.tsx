@@ -149,10 +149,124 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background relative">
-      {/* ... (watermark, nav, hero sections remain same) */}
+      {/* Background Watermark Logo */}
+      <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden opacity-[0.03]">
+        <img 
+          src={logoImg} 
+          alt="" 
+          className="w-[120%] max-w-none rotate-12 scale-150 blur-[2px]" 
+        />
+      </div>
 
-      {/* Gallery Section */}
-      <section id="gallery" className="py-24 bg-white/40">
+      {/* Header / Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-white/5 py-4 transition-all duration-300">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+              <Link href="/">
+                <div className="flex items-center gap-3 cursor-pointer group">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full p-1 shadow-sm border border-gold/20 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110">
+                    <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
+                  </div>
+                  <span className="font-serif text-xl md:text-2xl font-bold tracking-tight text-white drop-shadow-sm">
+                    Yellow Rose <span className="text-secondary italic">Swag</span>
+                  </span>
+                </div>
+              </Link>
+
+          <div className="hidden md:flex items-center gap-10">
+            <a href="#about" className="text-sm font-bold text-white/70 hover:text-secondary uppercase tracking-[0.2em] transition-colors">Our Story</a>
+            <a href="#products" className="text-sm font-bold text-white/70 hover:text-secondary uppercase tracking-[0.2em] transition-colors">Products</a>
+            <a href="#gallery" className="text-sm font-bold text-white/70 hover:text-secondary uppercase tracking-[0.2em] transition-colors">Gallery</a>
+            <a href="#contact" className="bg-secondary text-primary px-8 py-3 rounded-full font-bold hover:bg-yellow-400 transition-all shadow-lg hover:shadow-secondary/20 active:scale-95">
+              Start Design
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden bg-primary">
+        <div className="absolute inset-0 z-0">
+          <img src={heroImg} alt="Workshop Background" className="w-full h-full object-cover opacity-30 mix-blend-overlay scale-105 animate-slow-zoom" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-transparent to-primary/90" />
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 mb-8 animate-in slide-in-from-bottom-4 duration-700">
+              <Star className="w-4 h-4 text-secondary fill-secondary" />
+              <span className="text-sm font-bold text-white uppercase tracking-[0.3em]">Elgin's Premier Custom Shop</span>
+            </div>
+            
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[0.9] mb-8 animate-in slide-in-from-bottom-6 duration-1000 delay-150">
+              Quality First. <br />
+              <span className="text-secondary italic font-serif font-medium">Family</span> Always.
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-white/70 max-w-2xl mb-12 leading-relaxed animate-in slide-in-from-bottom-8 duration-1000 delay-300">
+              Yellow Rose Swag & Design creates bespoke apparel and etched glassware that celebrates your story. Owned by Seger Tyler.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 animate-in slide-in-from-bottom-10 duration-1000 delay-500">
+              <a href="#contact" className="group bg-secondary text-primary px-10 py-5 rounded-full font-extrabold text-lg flex items-center justify-center gap-3 hover:bg-yellow-400 transition-all shadow-2xl hover:shadow-secondary/40 active:scale-95">
+                Start Your Project <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              </a>
+              <a href="#gallery" className="px-10 py-5 rounded-full font-bold text-lg border-2 border-white/20 text-white hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                View Showcase
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating Stat Badges */}
+        <div className="absolute bottom-12 right-12 hidden lg:flex flex-col gap-6 animate-in fade-in duration-1000 delay-700">
+          <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center">
+              <CheckCircle className="w-6 h-6 text-secondary" />
+            </div>
+            <div>
+              <p className="text-white font-bold text-xl leading-none">100% Custom</p>
+              <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Unique Designs</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section / Values */}
+      <section id="about" className="py-28 bg-primary text-white relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
+            <div className="flex flex-col items-center text-center group">
+              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-8 -rotate-6 group-hover:rotate-0 transition-transform">
+                <Star className="w-10 h-10 text-secondary" />
+              </div>
+              <h3 className="text-3xl font-serif font-bold mb-4">Quality Focus</h3>
+              <p className="text-primary-foreground/70 leading-relaxed">
+                We use premium materials and precise techniques to ensure every piece we create is a masterpiece of durability and design.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center group">
+              <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                <Clock className="w-10 h-10 text-secondary" />
+              </div>
+              <h3 className="text-3xl font-serif font-bold mb-4">Quick Turnaround</h3>
+              <p className="text-primary-foreground/70 leading-relaxed">
+                We know your time is valuable. Our optimized workflow ensures your custom orders are processed with speed without ever sacrificing quality.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center group">
+              <div className="w-20 h-20 bg-accent/20 rounded-2xl flex items-center justify-center mb-8 rotate-6 group-hover:rotate-0 transition-transform">
+                <Users className="w-10 h-10 text-accent" />
+              </div>
+              <h3 className="text-3xl font-serif font-bold mb-4">Family Operated</h3>
+              <p className="text-primary-foreground/70 leading-relaxed">
+                Owned by Seger Tyler. We treat every order as if it were for our own family, ensuring a personal touch that big brands just can't match.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Products Showcase */}
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="max-w-2xl">
