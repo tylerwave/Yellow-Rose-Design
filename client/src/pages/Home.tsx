@@ -12,6 +12,28 @@ import design3 from "@/assets/images/design-3.png";
 import design4 from "@/assets/images/design-4.png";
 import design5 from "@/assets/images/design-5.png";
 
+// Import real product photos
+import realPhoto1 from "@assets/20240622_180321_1772241671668.jpg";
+import realPhoto2 from "@assets/20240622_204452_1772241671668.jpg";
+import realPhoto3 from "@assets/20240622_205301_1772241671669.jpg";
+import realPhoto4 from "@assets/20240827_223045_1772241671669.jpg";
+import realPhoto5 from "@assets/20241028_234036_1772241671669.jpg";
+import realPhoto6 from "@assets/20241029_180006_1772241671670.jpg";
+import realPhoto7 from "@assets/20241029_180025_1772241671670.jpg";
+import realPhoto8 from "@assets/20241029_180054_1772241671671.jpg";
+import realPhoto9 from "@assets/20241105_125613_1772241671672.jpg";
+import realPhoto10 from "@assets/20241109_201007_1772241671673.jpg";
+import realPhoto11 from "@assets/20241212_194633_1772241671673.jpg";
+import realPhoto12 from "@assets/20241214_224420_1772241671674.jpg";
+import realPhoto13 from "@assets/20241214_224502_1772241671674.jpg";
+import realPhoto14 from "@assets/20241214_224707_1772241671675.jpg";
+import realPhoto15 from "@assets/20241214_224922_1772241671676.jpg";
+import realPhoto16 from "@assets/20241215_012616_1772241671676.jpg";
+import realPhoto17 from "@assets/20241222_222711_1772241671676.jpg";
+import realPhoto18 from "@assets/20241222_222757_1772241671677.jpg";
+import realPhoto19 from "@assets/20241223_214449_1772241671677.jpg";
+import realPhoto20 from "@assets/20241226_162152_1772241671677.jpg";
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background relative">
@@ -122,6 +144,38 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Real Photos */}
+            {[
+              { src: realPhoto1, title: "Faith-Based Baseball Tee" },
+              { src: realPhoto2, title: "Custom Glitter Tank" },
+              { src: realPhoto3, title: "Man of Faith Polo" },
+              { src: realPhoto4, title: "Personalized Nurse Long-Sleeve" },
+              { src: realPhoto5, title: "Custom Clemson Hoodie" },
+              { src: realPhoto6, title: "Cajun Seafood Boil Kitchen Set" },
+              { src: realPhoto7, title: "Custom Potholder" },
+              { src: realPhoto8, title: "Seafood Boil Collection" },
+              { src: realPhoto9, title: "Team T-Shirt Set" },
+              { src: realPhoto10, title: "Custom Event Aprons" },
+              { src: realPhoto11, title: "Holiday Baby Onesie" },
+              { src: realPhoto12, title: "Unafraid Hoodie Front" },
+              { src: realPhoto13, title: "God Got Me Hoodie Back" },
+              { src: realPhoto14, title: "Walk by Faith Hoodie" },
+              { src: realPhoto15, title: "Original Body Style Hoodie" },
+              { src: realPhoto16, title: "Custom Gator Stocking" },
+              { src: realPhoto17, title: "Proverbs 31:25 Hoodie" },
+              { src: realPhoto18, title: "Strength & Dignity Design" },
+              { src: realPhoto19, title: "SC Gamecocks Hoodie" },
+              { src: realPhoto20, title: "Cool Besties Club Shirt" },
+            ].map((photo, idx) => (
+              <div key={idx} className="group relative aspect-square overflow-hidden rounded-lg shadow-lg">
+                <img src={photo.src} alt={photo.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
+                  <p className="text-white font-serif text-xl font-bold">{photo.title}</p>
+                </div>
+              </div>
+            ))}
+            
+            {/* Mockup Photos */}
             <div className="group relative aspect-square overflow-hidden rounded-lg shadow-lg">
               <img src={design1} alt="Custom T-Shirt Design" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
