@@ -143,7 +143,7 @@ export default function Home() {
             <div className="group relative aspect-square overflow-hidden rounded-lg shadow-lg">
               <img src={design4} alt="Custom Tote Bag" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
-                <p className="text-white font-serif text-xl font-bold">Embroidered Canvas Tote</p>
+                <p className="text-white font-serif text-xl font-bold">Canvas Tote</p>
               </div>
             </div>
             <div className="group relative aspect-square overflow-hidden rounded-lg shadow-lg">
@@ -245,7 +245,7 @@ export default function Home() {
               <div className="p-10 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="text-2xl font-serif font-bold text-primary mb-4">Stockings & Bags</h3>
-                  <p className="text-foreground/60 mb-8 leading-relaxed">From holiday stockings to everyday tote bags, we create functional art for your lifestyle.</p>
+                  <p className="text-foreground/60 mb-8 leading-relaxed">From holiday stockings to everyday canvas tote bags, we create functional art for your lifestyle.</p>
                 </div>
                 <a href="#contact" className="text-secondary font-bold inline-flex items-center gap-2 group/link">
                   View Catalog <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
