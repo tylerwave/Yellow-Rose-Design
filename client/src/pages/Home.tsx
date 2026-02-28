@@ -2,7 +2,7 @@ import { Instagram, Facebook, Phone, Mail, MapPin, CheckCircle, Clock, Users, St
 import { useState } from "react";
 import { Link } from "wouter";
 
-import logoImg from "@/assets/images/logo_new.png";
+import logoImg from "@/assets/images/logo.png";
 import heroImg from "@/assets/images/hero.png";
 import apparelImg from "@/assets/images/apparel.png";
 import glasswareImg from "@/assets/images/glassware.png";
@@ -166,14 +166,18 @@ export default function Home() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="cursor-pointer group bg-transparent border-none p-0 flex items-center justify-center -ml-4"
+            className="flex items-center gap-4 cursor-pointer group bg-transparent border-none p-0 text-left"
           >
-            <div className="w-[60px] h-[60px] md:w-[90px] md:h-[90px] rounded-full shadow-lg border-2 border-gold/40 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/60 group-hover:border-gold/80 bg-white">
-              <img 
-                src={logoImg} 
-                alt="Yellow Rose Logo" 
-                className="w-full h-full object-contain contrast-[1.25] saturate-[1.5] brightness-[1.05] drop-shadow-xl scale-[0.5]" 
-              />
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full p-1.5 shadow-md border border-gold/30 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/20">
+              <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-md">
+                Yellow Rose <span className="text-secondary italic">Swag & Design, LLC</span>
+              </span>
+              <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] text-secondary uppercase opacity-80 group-hover:text-white transition-colors">
+                Quality First • Family Always
+              </span>
             </div>
           </button>
 
