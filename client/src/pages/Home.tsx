@@ -61,6 +61,9 @@ import apparelNew11 from "@assets/20260222_224501_1772243487184.jpg";
 import totePhoto1 from "@assets/20251028_191157_1772243294205.jpg";
 import totePhoto2 from "@assets/20251028_194231_1772243294206.jpg";
 
+// Import personal story photo
+import storyPhoto from "@assets/20240919_065505_1772245679023.jpg";
+
 export default function Home() {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
 
@@ -231,37 +234,77 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About/Values Section */}
-      <section id="about" className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+      {/* Our Story Section */}
+      <section id="about" className="py-28 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="lg:w-1/2">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-secondary/20 rounded-2xl rotate-3" />
+                <img 
+                  src={storyPhoto} 
+                  alt="Our Story" 
+                  className="relative rounded-2xl shadow-2xl w-full aspect-[4/5] object-cover contrast-[1.05] brightness-[1.02]" 
+                />
+              </div>
+            </div>
+            <div className="lg:w-1/2">
+              <h2 className="text-5xl md:text-6xl font-bold text-primary mb-8">Our Story</h2>
+              <div className="h-1.5 w-24 bg-secondary mb-10 rounded-full" />
+              <div className="space-y-6 text-xl text-foreground/80 leading-relaxed">
+                <p className="font-serif italic text-2xl text-primary mb-8">
+                  "Yellow Rose Swag & Design, LLC is my baby!!"
+                </p>
+                <p>
+                  I'm a nurse who LOVES to make CUSTOM t-shirts, apparel, etc. We are a small business, family-owned and operated.
+                </p>
+                <p>
+                  This company was born from the desire to honor my grandmother. The yellow rose was my Nanny's favorite flower! She was my inspiration! What better way to honor her memory.
+                </p>
+              </div>
+              
+              <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 pt-12 border-t border-border">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Star className="w-6 h-6 text-secondary fill-secondary" />
+                  </div>
+                  <p className="font-bold text-primary">Family Owned</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Clock className="w-6 h-6 text-secondary" />
+                  </div>
+                  <p className="font-bold text-primary">Quick Delivery</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-6 h-6 text-secondary" />
+                  </div>
+                  <p className="font-bold text-primary">Nurse Craft</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 skew-x-12 transform translate-x-1/2" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-8 rotate-3 group-hover:rotate-0 transition-transform">
-                <CheckCircle className="w-10 h-10 text-secondary" />
-              </div>
-              <h3 className="text-3xl font-serif font-bold mb-4">Exceptional Quality</h3>
-              <p className="text-primary-foreground/70 leading-relaxed">
-                Every stitch and every etch is crafted with meticulous attention to detail. We pride ourselves on delivering premium products that stand the test of time.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+            {/* ... keeping simplified values grid ... */}
+            <div className="group">
+              <h3 className="text-2xl font-serif font-bold mb-4">Quality Focus</h3>
+              <p className="text-primary-foreground/60">Premium materials for lasting designs.</p>
             </div>
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-8 -rotate-3 group-hover:rotate-0 transition-transform">
-                <Clock className="w-10 h-10 text-secondary" />
-              </div>
-              <h3 className="text-3xl font-serif font-bold mb-4">Quick Turnaround</h3>
-              <p className="text-primary-foreground/70 leading-relaxed">
-                We know your time is valuable. Our optimized workflow ensures your custom orders are processed with speed without ever sacrificing quality.
-              </p>
+            <div className="group">
+              <h3 className="text-2xl font-serif font-bold mb-4">Quick Turnaround</h3>
+              <p className="text-primary-foreground/60">Fast processing for your custom needs.</p>
             </div>
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-accent/20 rounded-2xl flex items-center justify-center mb-8 rotate-6 group-hover:rotate-0 transition-transform">
-                <Users className="w-10 h-10 text-accent" />
-              </div>
-              <h3 className="text-3xl font-serif font-bold mb-4">Family Operated</h3>
-              <p className="text-primary-foreground/70 leading-relaxed">
-                Owned by Seger Tyler. We treat every order as if it were for our own family, ensuring a personal touch that big brands just can't match.
-              </p>
+            <div className="group">
+              <h3 className="text-2xl font-serif font-bold mb-4">Personal Touch</h3>
+              <p className="text-primary-foreground/60">Every order treated like family.</p>
             </div>
           </div>
         </div>
