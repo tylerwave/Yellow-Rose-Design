@@ -179,6 +179,7 @@ export default function Home() {
             <a href="#about" className="text-sm font-bold text-white/70 hover:text-secondary uppercase tracking-[0.2em] transition-colors">Our Story</a>
             <a href="#products" className="text-sm font-bold text-white/70 hover:text-secondary uppercase tracking-[0.2em] transition-colors">Products</a>
             <a href="#gallery" className="text-sm font-bold text-white/70 hover:text-secondary uppercase tracking-[0.2em] transition-colors">Gallery</a>
+            <a href="#contact" className="text-sm font-bold text-white/70 hover:text-secondary uppercase tracking-[0.2em] transition-colors">Contact Us</a>
             <a href="#contact" className="bg-secondary text-primary px-8 py-3 rounded-full font-bold hover:bg-yellow-400 transition-all shadow-lg hover:shadow-secondary/20 active:scale-95">
               Start Design
             </a>
