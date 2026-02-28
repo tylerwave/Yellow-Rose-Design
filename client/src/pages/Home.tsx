@@ -168,11 +168,11 @@ export default function Home() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="cursor-pointer group bg-transparent border-none p-0 flex items-center justify-center -ml-4"
           >
-            <div className="w-[140px] h-[140px] md:w-[220px] md:h-[220px] rounded-full shadow-2xl border-4 border-gold/50 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/70 group-hover:border-gold/90 bg-white">
+            <div className="w-[60px] h-[60px] md:w-[90px] md:h-[90px] rounded-full shadow-lg border-2 border-gold/40 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/60 group-hover:border-gold/80 bg-white">
               <img 
                 src={logoImg} 
                 alt="Yellow Rose Logo" 
-                className="w-full h-full object-cover contrast-[1.25] saturate-[1.5] brightness-[1.05] drop-shadow-2xl scale-[1.35]" 
+                className="w-full h-full object-contain contrast-[1.25] saturate-[1.5] brightness-[1.05] drop-shadow-xl scale-[0.5]" 
               />
             </div>
           </button>
