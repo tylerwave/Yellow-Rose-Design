@@ -44,6 +44,19 @@ import glassPhoto6 from "@assets/20241219_002739_1772242332558.jpg";
 import glassPhoto7 from "@assets/20241220_011727_1772242332559.jpg";
 import glassPhoto8 from "@assets/20241220_011740_1772242332559.jpg";
 
+// Import new apparel photos
+import apparelNew1 from "@assets/20250216_191820_1772243487180.jpg";
+import apparelNew2 from "@assets/20250216_191901_1772243487180.jpg";
+import apparelNew3 from "@assets/20250216_192445_1772243487181.jpg";
+import apparelNew4 from "@assets/20250317_181228_1772243487181.jpg";
+import apparelNew5 from "@assets/20250317_181812_1772243487182.jpg";
+import apparelNew6 from "@assets/20250317_181950_1772243487182.jpg";
+import apparelNew7 from "@assets/20250325_011529_1772243487183.jpg";
+import apparelNew8 from "@assets/20250325_014932_1772243487183.jpg";
+import apparelNew9 from "@assets/20260222_181530_1772243487183.jpg";
+import apparelNew10 from "@assets/20260222_181547_1772243487184.jpg";
+import apparelNew11 from "@assets/20260222_224501_1772243487184.jpg";
+
 // Import custom tote photos
 import totePhoto1 from "@assets/20251028_191157_1772243294205.jpg";
 import totePhoto2 from "@assets/20251028_194231_1772243294206.jpg";
@@ -58,6 +71,17 @@ export default function Home() {
       description: "T-shirts, hoodies, and more with high-quality designs.",
       image: realPhoto1,
       items: [
+        { src: apparelNew1, title: "Tiger Pride Softball Tee" },
+        { src: apparelNew2, title: "Tiger Pride Collection" },
+        { src: apparelNew3, title: "Custom Team Name Backs" },
+        { src: apparelNew4, title: "T-Ball Dad Baseball Tee" },
+        { src: apparelNew5, title: "Family T-Ball Set" },
+        { src: apparelNew6, title: "T-Ball Mom Raglan" },
+        { src: apparelNew7, title: "Wyatt Personalized Jersey" },
+        { src: apparelNew8, title: "Wyatt Number 5 Tee" },
+        { src: apparelNew9, title: "'Beautifully Broken' Rose Sweatshirt" },
+        { src: apparelNew10, title: "Faith-Based Message Tee" },
+        { src: apparelNew11, title: "High Rollers M/C Custom Long-Sleeve" },
         { src: realPhoto1, title: "Faith-Based Baseball Tee" },
         { src: realPhoto2, title: "Custom Glitter Tank" },
         { src: realPhoto3, title: "Man of Faith Polo" },
@@ -152,7 +176,7 @@ export default function Home() {
                 <img 
                   src={group.image} 
                   alt={group.title} 
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.05] brightness-[0.9]" 
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.1] brightness-[1.05] saturate-[1.15] sharpness-[1.1]" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent flex flex-col justify-end p-8">
                   <h3 className="text-white font-serif text-2xl font-bold mb-2">{group.title}</h3>
@@ -190,7 +214,7 @@ export default function Home() {
                       <img 
                         src={item.src} 
                         alt={item.title} 
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.05] brightness-[1.02] saturate-[1.1]" 
+                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.1] brightness-[1.05] saturate-[1.15] sharpness-[1.1]" 
                       />
                       <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center backdrop-blur-[2px]">
                         <p className="text-white font-serif text-lg font-bold drop-shadow-md">{item.title}</p>
