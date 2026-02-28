@@ -168,7 +168,7 @@ export default function Home() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-4 cursor-pointer group bg-transparent border-none p-0"
           >
-            <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full p-1.5 shadow-md border border-gold/30 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-110 group-hover:shadow-gold/20">
+            <div className="w-[72px] h-[72px] md:w-24 md:h-24 bg-white rounded-full p-2 shadow-md border border-gold/30 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-110 group-hover:shadow-gold/20">
               <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
             </div>
             <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-sm">
