@@ -161,16 +161,16 @@ export default function Home() {
       {/* Header / Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-white/5 py-4 transition-all duration-300">
         <div className="container mx-auto px-4 flex justify-between items-center">
-              <Link href="/">
-                <div className="flex items-center gap-3 cursor-pointer group">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full p-1 shadow-sm border border-gold/20 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110">
-                    <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
-                  </div>
-                  <span className="font-serif text-xl md:text-2xl font-bold tracking-tight text-white drop-shadow-sm">
-                    Yellow Rose <span className="text-secondary italic">Swag</span>
-                  </span>
-                </div>
-              </Link>
+          <Link href="/">
+            <div className="flex items-center gap-3 cursor-pointer group">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full p-1 shadow-sm border border-gold/20 flex items-center justify-center overflow-hidden transition-transform group-hover:scale-110">
+                <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
+              </div>
+              <span className="font-serif text-xl md:text-2xl font-bold tracking-tight text-white drop-shadow-sm">
+                Yellow Rose <span className="text-secondary italic">Swag</span>
+              </span>
+            </div>
+          </Link>
 
           <div className="hidden md:flex items-center gap-10">
             <a href="#about" className="text-sm font-bold text-white/70 hover:text-secondary uppercase tracking-[0.2em] transition-colors">Our Story</a>
@@ -231,21 +231,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section / Values */}
-      <section id="about" className="py-28 bg-primary text-white relative overflow-hidden">
+      {/* About/Values Section */}
+      <section id="about" className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 skew-x-12 transform translate-x-1/2" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-8 -rotate-6 group-hover:rotate-0 transition-transform">
-                <Star className="w-10 h-10 text-secondary" />
+              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-8 rotate-3 group-hover:rotate-0 transition-transform">
+                <CheckCircle className="w-10 h-10 text-secondary" />
               </div>
-              <h3 className="text-3xl font-serif font-bold mb-4">Quality Focus</h3>
+              <h3 className="text-3xl font-serif font-bold mb-4">Exceptional Quality</h3>
               <p className="text-primary-foreground/70 leading-relaxed">
-                We use premium materials and precise techniques to ensure every piece we create is a masterpiece of durability and design.
+                Every stitch and every etch is crafted with meticulous attention to detail. We pride ourselves on delivering premium products that stand the test of time.
               </p>
             </div>
             <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-8 -rotate-3 group-hover:rotate-0 transition-transform">
                 <Clock className="w-10 h-10 text-secondary" />
               </div>
               <h3 className="text-3xl font-serif font-bold mb-4">Quick Turnaround</h3>
@@ -266,7 +267,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Products Showcase */}
+      {/* Gallery Section */}
+      <section id="gallery" className="py-24 bg-white/40">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="max-w-2xl">
@@ -340,45 +342,6 @@ export default function Home() {
             </div>
           </div>
         )}
-      </section>
-
-      {/* ... (rest of the sections remain same) */}
-
-
-      {/* Features/Values */}
-      <section id="about" className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 skew-x-12 transform translate-x-1/2" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-8 rotate-3 group-hover:rotate-0 transition-transform">
-                <CheckCircle className="w-10 h-10 text-secondary" />
-              </div>
-              <h3 className="text-3xl font-serif font-bold mb-4">Exceptional Quality</h3>
-              <p className="text-primary-foreground/70 leading-relaxed">
-                Every stitch and every etch is crafted with meticulous attention to detail. We pride ourselves on delivering premium products that stand the test of time.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-secondary/20 rounded-2xl flex items-center justify-center mb-8 -rotate-3 group-hover:rotate-0 transition-transform">
-                <Clock className="w-10 h-10 text-secondary" />
-              </div>
-              <h3 className="text-3xl font-serif font-bold mb-4">Quick Turnaround</h3>
-              <p className="text-primary-foreground/70 leading-relaxed">
-                We know your time is valuable. Our optimized workflow ensures your custom orders are processed with speed without ever sacrificing quality.
-              </p>
-            </div>
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-accent/20 rounded-2xl flex items-center justify-center mb-8 rotate-6 group-hover:rotate-0 transition-transform">
-                <Users className="w-10 h-10 text-accent" />
-              </div>
-              <h3 className="text-3xl font-serif font-bold mb-4">Family Operated</h3>
-              <p className="text-primary-foreground/70 leading-relaxed">
-                Owned by Seger Tyler. We treat every order as if it were for our own family, ensuring a personal touch that big brands just can't match.
-              </p>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Products Showcase */}
@@ -461,56 +424,49 @@ export default function Home() {
 
                 <div className="space-y-10">
                   <div className="flex items-start gap-5 group">
-                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-secondary transition-colors">
-                      <MapPin className="w-6 h-6 text-secondary group-hover:text-primary transition-colors" />
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-secondary transition-colors group-hover:text-primary">
+                      <Mail className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-xl mb-1">Our Workshop</h4>
-                      <p className="text-primary-foreground/60 leading-relaxed">Elgin, South Carolina<br/><span className="text-secondary font-semibold">Owner: Seger Tyler</span></p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-5 group">
-                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-secondary transition-colors">
-                      <Phone className="w-6 h-6 text-secondary group-hover:text-primary transition-colors" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-xl mb-1">Phone</h4>
-                      <a href="tel:3188297479" className="text-primary-foreground/60 hover:text-white transition-colors text-lg font-medium tracking-wide">318-829-7479</a>
+                      <p className="text-sm font-bold text-secondary uppercase tracking-widest mb-1">Email Us</p>
+                      <a href="mailto:yellowroseswag@gmail.com" className="text-xl font-medium hover:text-secondary transition-colors">yellowroseswag@gmail.com</a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-5 group">
-                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-secondary transition-colors">
-                      <Mail className="w-6 h-6 text-secondary group-hover:text-primary transition-colors" />
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-secondary transition-colors group-hover:text-primary">
+                      <Phone className="w-6 h-6" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-xl mb-1">Email</h4>
-                      <a href="mailto:yellowroseswag@gmail.com" className="text-primary-foreground/60 hover:text-white transition-colors text-lg font-medium">yellowroseswag@gmail.com</a>
+                      <p className="text-sm font-bold text-secondary uppercase tracking-widest mb-1">Call Us</p>
+                      <a href="tel:3188297479" className="text-xl font-medium hover:text-secondary transition-colors">318-829-7479</a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-5 group">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-secondary transition-colors group-hover:text-primary">
+                      <MapPin className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-secondary uppercase tracking-widest mb-1">Visit Us</p>
+                      <p className="text-xl font-medium">Elgin, South Carolina</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-20 pt-12 border-t border-white/10 relative z-10">
-                <h4 className="font-bold mb-6 text-lg">Follow Our Creative Journey</h4>
-                <div className="flex gap-5">
-                  <a href="https://instagram.com/yellowrose_swag" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:-translate-y-1">
-                    <Instagram className="w-6 h-6" />
-                  </a>
-                  <a href="https://facebook.com/YellowRoseSwagAndDesignLLC" target="_blank" rel="noreferrer" className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-secondary hover:text-primary transition-all hover:-translate-y-1">
-                    <Facebook className="w-6 h-6" />
-                  </a>
-                </div>
+              <div className="pt-12 border-t border-white/10 mt-12 flex gap-6">
+                <a href="https://facebook.com" className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition-all active:scale-90 shadow-lg">
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="https://instagram.com/yellowrose_swag" className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition-all active:scale-90 shadow-lg">
+                  <Instagram className="w-5 h-5" />
+                </a>
               </div>
             </div>
 
-            {/* Form */}
+            {/* Contact Form */}
             <div className="lg:w-3/5 p-12 md:p-16">
-              <div className="mb-10">
-                <h3 className="text-3xl font-bold text-primary mb-4">Design Inquiry</h3>
-                <p className="text-foreground/50">Tell us a bit about what you're looking for, and we'll get back to you with a quote and timeline.</p>
-              </div>
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
