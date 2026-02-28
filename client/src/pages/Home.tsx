@@ -167,10 +167,14 @@ export default function Home() {
               { src: realPhoto19, title: "SC Gamecocks Hoodie" },
               { src: realPhoto20, title: "Cool Besties Club Shirt" },
             ].map((photo, idx) => (
-              <div key={idx} className="group relative aspect-square overflow-hidden rounded-lg shadow-lg">
-                <img src={photo.src} alt={photo.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
-                  <p className="text-white font-serif text-xl font-bold">{photo.title}</p>
+              <div key={idx} className="group relative aspect-square overflow-hidden rounded-lg shadow-lg bg-white">
+                <img 
+                  src={photo.src} 
+                  alt={photo.title} 
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.05] brightness-[1.02] saturate-[1.1]" 
+                />
+                <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center backdrop-blur-[2px]">
+                  <p className="text-white font-serif text-xl font-bold drop-shadow-md">{photo.title}</p>
                 </div>
               </div>
             ))}
