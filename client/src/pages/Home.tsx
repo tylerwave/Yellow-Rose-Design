@@ -166,8 +166,8 @@ export default function Home() {
               <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full p-1.5 shadow-md border border-gold/30 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-110 group-hover:shadow-gold/20">
                 <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-md">
-                Yellow Rose <span className="text-secondary italic">Swag</span>
+              <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-sm">
+                Yellow Rose <span className="text-secondary italic">Swag & Design, LLC</span>
               </span>
             </div>
           </Link>
