@@ -164,16 +164,17 @@ export default function Home() {
       {/* Header / Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-white/5 py-4 transition-all duration-300">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <Link href="/">
-            <div className="flex items-center gap-4 cursor-pointer group">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full p-1.5 shadow-md border border-gold/30 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-110 group-hover:shadow-gold/20">
-                <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
-              </div>
-              <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-sm">
-                Yellow Rose <span className="text-secondary italic">Swag & Design, LLC</span>
-              </span>
+          <button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="flex items-center gap-4 cursor-pointer group bg-transparent border-none p-0"
+          >
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full p-1.5 shadow-md border border-gold/30 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:scale-110 group-hover:shadow-gold/20">
+              <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
             </div>
-          </Link>
+            <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-sm">
+              Yellow Rose <span className="text-secondary italic">Swag & Design, LLC</span>
+            </span>
+          </button>
 
           <div className="hidden md:flex items-center gap-10">
             <a href="#about" className="text-sm font-bold text-white/70 hover:text-secondary uppercase tracking-[0.2em] transition-colors">Our Story</a>
