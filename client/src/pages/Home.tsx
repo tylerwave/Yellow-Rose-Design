@@ -168,8 +168,12 @@ export default function Home() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-4 cursor-pointer group bg-transparent border-none p-0 text-left"
           >
-            <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full p-1.5 shadow-md border border-gold/30 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/20">
-              <img src={logoImg} alt="Yellow Rose Logo" className="w-full h-full object-contain" />
+            <div className="w-[115px] h-[115px] md:w-[155px] md:h-[155px] bg-white rounded-full p-0 shadow-xl border-2 border-gold/40 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/40 group-hover:border-gold/60">
+              <img 
+                src={logoImg} 
+                alt="Yellow Rose Logo" 
+                className="w-full h-full object-cover contrast-[1.15] saturate-[1.3] brightness-[1.05] drop-shadow-md scale-125" 
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-md">
