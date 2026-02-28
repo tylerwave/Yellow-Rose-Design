@@ -600,7 +600,7 @@ export default function Home() {
             <p className="text-secondary font-semibold uppercase tracking-[0.3em] text-sm">Elgin • South Carolina</p>
           </div>
           <div className="h-px w-full max-w-lg bg-white/10 mx-auto mb-10" />
-          <p className="text-sm">© {new Date().getFullYear()} Yellow Rose Swag & Design. Established 1927. Quality first, Family always.</p>
+          <p className="text-sm">© {new Date().getFullYear()} Yellow Rose Swag & Design. Quality first, Family always.</p>
         </div>
       </footer>
     </div>
