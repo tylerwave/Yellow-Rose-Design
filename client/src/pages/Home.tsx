@@ -34,6 +34,16 @@ import realPhoto18 from "@assets/20241222_222757_1772241671677.jpg";
 import realPhoto19 from "@assets/20241223_214449_1772241671677.jpg";
 import realPhoto20 from "@assets/20241226_162152_1772241671677.jpg";
 
+// Import real glass etching photos
+import glassPhoto1 from "@assets/20241219_002402_1772242332556.jpg";
+import glassPhoto2 from "@assets/20241219_002407_1772242332557.jpg";
+import glassPhoto3 from "@assets/20241219_002536_1772242332557.jpg";
+import glassPhoto4 from "@assets/20241219_002553_1772242332557.jpg";
+import glassPhoto5 from "@assets/20241219_002642_(1)_1772242332558.jpg";
+import glassPhoto6 from "@assets/20241219_002739_1772242332558.jpg";
+import glassPhoto7 from "@assets/20241220_011727_1772242332559.jpg";
+import glassPhoto8 from "@assets/20241220_011740_1772242332559.jpg";
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background relative">
@@ -166,6 +176,14 @@ export default function Home() {
               { src: realPhoto18, title: "Strength & Dignity Design" },
               { src: realPhoto19, title: "SC Gamecocks Hoodie" },
               { src: realPhoto20, title: "Cool Besties Club Shirt" },
+              { src: glassPhoto1, title: "'Believe in the Magic' Carafe" },
+              { src: glassPhoto2, title: "Custom Holiday Glassware" },
+              { src: glassPhoto3, title: "Personalized Wine Glass Set" },
+              { src: glassPhoto4, title: "'Matthew' Etched Glass" },
+              { src: glassPhoto5, title: "'Brianna' Custom Glass" },
+              { src: glassPhoto6, title: "'Matt & Brianna' Wedding Glass" },
+              { src: glassPhoto7, title: "LED 'Friends' Acrylic Sign" },
+              { src: glassPhoto8, title: "Multi-Color LED Acrylic Gift" },
             ].map((photo, idx) => (
               <div key={idx} className="group relative aspect-square overflow-hidden rounded-lg shadow-lg bg-white">
                 <img 
