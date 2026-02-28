@@ -168,18 +168,18 @@ export default function Home() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-4 cursor-pointer group bg-transparent border-none p-0 text-left"
           >
-            <div className="w-[72px] h-[72px] md:w-24 md:h-24 rounded-full shadow-xl border-2 border-gold/40 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/40 group-hover:border-gold/60 bg-white">
+            <div className="w-[108px] h-[108px] md:w-36 md:h-36 rounded-full shadow-2xl border-2 border-gold/40 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:shadow-gold/60 group-hover:border-gold/80 bg-white">
               <img 
                 src={logoImg} 
                 alt="Yellow Rose Logo" 
-                className="w-[110%] h-[110%] object-cover contrast-[1.15] saturate-[1.3] brightness-[1.05] drop-shadow-md" 
+                className="w-full h-full object-cover contrast-[1.2] saturate-[1.4] brightness-[1.05] drop-shadow-2xl scale-[1.15]" 
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-md">
+              <span className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-lg">
                 Yellow Rose <span className="text-secondary italic">Swag & Design, LLC</span>
               </span>
-              <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] text-secondary uppercase opacity-80 group-hover:text-white transition-colors">
+              <span className="text-xs md:text-sm font-bold tracking-[0.4em] text-secondary uppercase opacity-90 group-hover:text-white transition-colors">
                 Quality First • Family Always
               </span>
             </div>
