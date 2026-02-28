@@ -14,11 +14,11 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background relative">
       {/* Watermarked Logo Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden opacity-[0.03]">
+      <div className="fixed inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden opacity-[0.08]">
         <img 
           src={logoImg} 
           alt="" 
-          className="w-[150%] max-w-none rotate-12 scale-150"
+          className="w-[120%] max-w-none rotate-6 scale-125"
         />
       </div>
 
