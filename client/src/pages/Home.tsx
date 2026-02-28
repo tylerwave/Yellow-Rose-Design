@@ -44,6 +44,10 @@ import glassPhoto6 from "@assets/20241219_002739_1772242332558.jpg";
 import glassPhoto7 from "@assets/20241220_011727_1772242332559.jpg";
 import glassPhoto8 from "@assets/20241220_011740_1772242332559.jpg";
 
+// Import custom tote photos
+import totePhoto1 from "@assets/20251028_191157_1772243294205.jpg";
+import totePhoto2 from "@assets/20251028_194231_1772243294206.jpg";
+
 export default function Home() {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
 
@@ -102,6 +106,16 @@ export default function Home() {
         { src: realPhoto11, title: "Holiday Baby Onesie" },
         { src: realPhoto16, title: "Custom Gator Stocking" },
         { src: design3, title: "Hand-Finished Holiday Stockings" },
+      ]
+    },
+    {
+      id: "totes",
+      title: "Custom Totes",
+      description: "Personalized tote bags for any occasion.",
+      image: totePhoto1,
+      items: [
+        { src: totePhoto1, title: "Personalized 'Wyatt' Bug Bag" },
+        { src: totePhoto2, title: "Custom Patterned Tote" },
         { src: design4, title: "Canvas Tote" },
       ]
     }
@@ -128,7 +142,7 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {galleryData.map((group) => (
               <div 
                 key={group.id} 
@@ -141,10 +155,10 @@ export default function Home() {
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.05] brightness-[0.9]" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent flex flex-col justify-end p-8">
-                  <h3 className="text-white font-serif text-3xl font-bold mb-2">{group.title}</h3>
-                  <p className="text-white/80 text-sm mb-4 line-clamp-2">{group.description}</p>
-                  <span className="text-secondary font-bold flex items-center gap-2 group-hover:translate-x-2 transition-transform">
-                    View Collection ({group.items.length}) <ArrowRight className="w-4 h-4" />
+                  <h3 className="text-white font-serif text-2xl font-bold mb-2">{group.title}</h3>
+                  <p className="text-white/80 text-xs mb-4 line-clamp-2">{group.description}</p>
+                  <span className="text-secondary font-bold flex items-center gap-2 text-sm group-hover:translate-x-2 transition-transform">
+                    View ({group.items.length}) <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
               </div>
