@@ -62,7 +62,7 @@ import totePhoto1 from "@assets/20251028_191157_1772243294205.jpg";
 import totePhoto2 from "@assets/20251028_194231_1772243294206.jpg";
 
 // Import personal story photo
-import storyPhoto from "@assets/20240919_065505_1772245679023.jpg";
+import storyPhoto from "@assets/20250530_232612_1772246249932.jpg";
 
 export default function Home() {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
@@ -244,7 +244,7 @@ export default function Home() {
                 <img 
                   src={storyPhoto} 
                   alt="Our Story" 
-                  className="relative rounded-2xl shadow-2xl w-full aspect-[4/5] object-cover contrast-[1.05] brightness-[1.02]" 
+                  className="relative rounded-2xl shadow-2xl w-full aspect-[4/5] object-cover contrast-[1.1] brightness-[1.05] saturate-[1.1] shadow-gold/20" 
                 />
               </div>
             </div>
