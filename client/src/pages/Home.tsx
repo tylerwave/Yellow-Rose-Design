@@ -66,6 +66,7 @@ import storyPhoto from "@assets/20250530_232612_1772246249932.jpg";
 
 export default function Home() {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{src: string, title: string} | null>(null);
 
   const galleryData = [
     {
@@ -380,7 +381,11 @@ export default function Home() {
               <div className="p-6 md:p-10 overflow-y-auto custom-scrollbar">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                   {currentGroup.items.map((item, idx) => (
-                    <div key={idx} className="group relative aspect-square overflow-hidden rounded-lg shadow-md bg-white border border-border/30">
+                    <div 
+                      key={idx} 
+                      className="group relative aspect-square overflow-hidden rounded-lg shadow-md bg-white border border-border/30 cursor-zoom-in"
+                      onClick={() => setSelectedImage(item)}
+                    >
                       <img 
                         src={item.src} 
                         alt={item.title} 
@@ -393,6 +398,29 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Full Screen Image Modal */}
+        {selectedImage && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 animate-in fade-in zoom-in duration-300">
+            <div className="absolute inset-0 bg-black/95 backdrop-blur-sm" onClick={() => setSelectedImage(null)} />
+            <div className="relative max-w-5xl w-full h-full flex flex-col items-center justify-center pointer-events-none">
+              <button 
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors text-white z-50 pointer-events-auto"
+              >
+                <X className="w-8 h-8" />
+              </button>
+              <img 
+                src={selectedImage.src} 
+                alt={selectedImage.title} 
+                className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl contrast-[1.1] brightness-[1.05] saturate-[1.1]" 
+              />
+              <p className="text-white font-serif text-2xl font-bold mt-6 text-center px-4 drop-shadow-lg">
+                {selectedImage.title}
+              </p>
             </div>
           </div>
         )}
