@@ -346,7 +346,7 @@ export default function Home() {
                 <img 
                   src={group.image} 
                   alt={group.title} 
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.1] brightness-[1.05] saturate-[1.15] sharpness-[1.1]" 
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.15] brightness-[1.05] saturate-[1.2] sharpness-[1.2]" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent flex flex-col justify-end p-8">
                   <h3 className="text-white font-serif text-2xl font-bold mb-2">{group.title}</h3>
@@ -384,7 +384,7 @@ export default function Home() {
                       <img 
                         src={item.src} 
                         alt={item.title} 
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.1] brightness-[1.05] saturate-[1.15] sharpness-[1.1]" 
+                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.15] brightness-[1.05] saturate-[1.2] sharpness-[1.2]" 
                       />
                       <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center backdrop-blur-[2px]">
                         <p className="text-white font-serif text-lg font-bold drop-shadow-md">{item.title}</p>
