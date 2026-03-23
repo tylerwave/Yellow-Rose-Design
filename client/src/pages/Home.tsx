@@ -1,6 +1,7 @@
 import { Instagram, Facebook, Phone, Mail, MapPin, CheckCircle, Clock, Users, Star, ArrowRight, Image as ImageIcon, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
+import { useMutation } from "@tanstack/react-query";
 
 import logoImg from "@/assets/images/logo.png";
 import heroImg from "@/assets/images/hero.png";
@@ -67,6 +68,61 @@ import storyPhoto from "@assets/20250530_232612_1772246249932.jpg";
 export default function Home() {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<{src: string, title: string} | null>(null);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    serviceType: "apparel",
+    designDetails: "",
+    quantity: 1,
+  });
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const createOrderMutation = useMutation({
+    mutationFn: async (data: typeof formData) => {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          estimatedCost: 5000, // Placeholder: $50 - would be calculated dynamically
+        }),
+      });
+      if (!response.ok) throw new Error("Failed to create order");
+      return response.json();
+    },
+    onSuccess: () => {
+      setSubmitStatus("success");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        serviceType: "apparel",
+        designDetails: "",
+        quantity: 1,
+      });
+      setTimeout(() => setSubmitStatus("idle"), 3000);
+    },
+    onError: () => {
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus("idle"), 3000);
+    },
+  });
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "quantity" ? parseInt(value) : value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    createOrderMutation.mutate(formData);
+  };
 
   const galleryData = [
     {
@@ -549,33 +605,88 @@ export default function Home() {
 
             {/* Contact Form */}
             <div className="lg:w-3/5 p-12 md:p-16">
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-primary/80 uppercase tracking-wider">First Name</label>
-                    <input type="text" className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50" placeholder="Jane" />
+                    <input 
+                      type="text" 
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleFormChange}
+                      required
+                      className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50" 
+                      placeholder="Jane" 
+                    />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-primary/80 uppercase tracking-wider">Last Name</label>
-                    <input type="text" className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50" placeholder="Doe" />
+                    <input 
+                      type="text" 
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleFormChange}
+                      required
+                      className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50" 
+                      placeholder="Doe" 
+                    />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-primary/80 uppercase tracking-wider">Email Address</label>
-                  <input type="email" className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50" placeholder="jane@example.com" />
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleFormChange}
+                    required
+                    className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50" 
+                    placeholder="jane@example.com" 
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-primary/80 uppercase tracking-wider">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleFormChange}
+                    required
+                    className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50" 
+                    placeholder="(555) 123-4567" 
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-primary/80 uppercase tracking-wider">Service Needed</label>
-                  <select className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50 font-medium">
-                    <option>Custom T-Shirts & Apparel</option>
-                    <option>Etched Glassware</option>
-                    <option>Tote Bag Design</option>
-                    <option>Custom Christmas Stockings</option>
-                    <option>Bulk/Corporate Order</option>
-                    <option>Other / Question</option>
+                  <select 
+                    name="serviceType"
+                    value={formData.serviceType}
+                    onChange={handleFormChange}
+                    className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50 font-medium"
+                  >
+                    <option value="apparel">Custom T-Shirts & Apparel</option>
+                    <option value="glassware">Etched Glassware</option>
+                    <option value="totes">Tote Bag Design</option>
+                    <option value="other">Custom Christmas Stockings</option>
+                    <option value="other">Bulk/Corporate Order</option>
+                    <option value="other">Other / Question</option>
                   </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-primary/80 uppercase tracking-wider">Quantity</label>
+                  <input 
+                    type="number" 
+                    name="quantity"
+                    value={formData.quantity}
+                    onChange={handleFormChange}
+                    min="1"
+                    className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all bg-background/50" 
+                    placeholder="1" 
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -607,11 +718,35 @@ export default function Home() {
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-primary/80 uppercase tracking-wider">Design Project Details</label>
-                  <textarea rows={5} className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all resize-none bg-background/50" placeholder="Describe your vision (quantity, sizes, designs...)"></textarea>
+                  <textarea 
+                    name="designDetails"
+                    value={formData.designDetails}
+                    onChange={handleFormChange}
+                    required
+                    rows={5} 
+                    className="w-full p-4 rounded-xl border border-border focus:outline-none focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all resize-none bg-background/50" 
+                    placeholder="Describe your vision (colors, sizes, design ideas...)"
+                  ></textarea>
                 </div>
 
-                <button type="button" className="w-full bg-primary text-white py-5 rounded-xl font-bold hover:bg-primary/90 transition-all shadow-xl text-lg uppercase tracking-[0.2em] active:scale-[0.98]">
-                  Submit Request
+                {submitStatus === "success" && (
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                    <p className="text-green-800 font-bold">✓ Order submitted successfully! We'll be in touch shortly.</p>
+                  </div>
+                )}
+
+                {submitStatus === "error" && (
+                  <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                    <p className="text-red-800 font-bold">✗ Error submitting order. Please try again.</p>
+                  </div>
+                )}
+
+                <button 
+                  type="submit" 
+                  disabled={createOrderMutation.isPending}
+                  className="w-full bg-primary text-white py-5 rounded-xl font-bold hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-xl text-lg uppercase tracking-[0.2em] active:scale-[0.98]"
+                >
+                  {createOrderMutation.isPending ? "Submitting..." : "Submit Request"}
                 </button>
               </form>
             </div>
