@@ -68,11 +68,16 @@ export async function sendOrderConfirmationEmail(order: Order) {
     </div>
   `;
 
-  await sendEmailViaResend(
-    order.email,
-    "Order Confirmation - Yellow Rose Swag & Design",
-    html
-  );
+  try {
+    await sendEmailViaResend(
+      order.email,
+      "Order Confirmation - Yellow Rose Swag & Design",
+      html
+    );
+  } catch (error) {
+    console.error("❌ Error in sendOrderConfirmationEmail:", error);
+    throw error;
+  }
 }
 
 export async function sendOrderNotificationEmail(order: Order) {
@@ -99,9 +104,14 @@ export async function sendOrderNotificationEmail(order: Order) {
     </div>
   `;
 
-  await sendEmailViaResend(
-    "yellowroseswag@gmail.com",
-    `New Order from ${order.firstName} ${order.lastName}`,
-    html
-  );
+  try {
+    await sendEmailViaResend(
+      "yellowroseswag@gmail.com",
+      `New Order from ${order.firstName} ${order.lastName}`,
+      html
+    );
+  } catch (error) {
+    console.error("❌ Error in sendOrderNotificationEmail:", error);
+    throw error;
+  }
 }
