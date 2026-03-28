@@ -12,8 +12,12 @@ export async function registerRoutes(
   // Create a new order
   app.post("/api/orders", async (req, res) => {
     try {
+      console.log("📝 Order received:", req.body);
       const validated = insertOrderSchema.parse(req.body);
       const order = await storage.createOrder(validated);
+      
+      console.log("✓ Order created:", order.id);
+      console.log("📧 Sending emails...");
       
       // Send emails asynchronously
       sendOrderConfirmationEmail(order);
@@ -21,6 +25,7 @@ export async function registerRoutes(
       
       res.json(order);
     } catch (error) {
+      console.error("❌ Error creating order:", error);
       if (error instanceof z.ZodError) {
         res.status(400).json({ error: error.errors });
       } else {

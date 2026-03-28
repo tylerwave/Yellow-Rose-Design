@@ -3,13 +3,18 @@ import type { Order } from "@shared/schema";
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
 async function sendEmailViaResend(to: string, subject: string, html: string) {
+  console.log(`\n🔄 Attempting to send email to: ${to}`);
+  
   if (!RESEND_API_KEY) {
-    console.log(`📧 Email would be sent to: ${to}`);
+    console.log(`⚠️  RESEND_API_KEY not set. Email would go to: ${to}`);
     console.log(`   Subject: ${subject}`);
     return;
   }
 
+  console.log(`✓ RESEND_API_KEY is configured`);
+
   try {
+    console.log(`📤 Calling Resend API...`);
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -24,15 +29,18 @@ async function sendEmailViaResend(to: string, subject: string, html: string) {
       }),
     });
 
+    console.log(`📬 Resend API Response Status: ${response.status}`);
+
     if (response.ok) {
       const data = await response.json();
-      console.log(`✓ Email sent to ${to} (ID: ${data.id})`);
+      console.log(`✓ Email successfully sent to ${to} (ID: ${data.id})\n`);
     } else {
       const error = await response.json();
-      console.error(`✗ Failed to send email to ${to}:`, error);
+      console.error(`✗ Resend API Error (${response.status}):`, error);
+      console.error(`   To: ${to}\n`);
     }
   } catch (error) {
-    console.error(`✗ Error sending email to ${to}:`, error);
+    console.error(`✗ Network Error sending email:`, error, `\n`);
   }
 }
 
