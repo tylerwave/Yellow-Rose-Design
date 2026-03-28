@@ -237,7 +237,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background relative">
       {/* Floating Share & Like Bar */}
-      <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-3">
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-3">
         <button
           data-testid="button-like"
           onClick={handleLike}
