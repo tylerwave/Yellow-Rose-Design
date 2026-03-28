@@ -22,7 +22,7 @@ async function sendEmailViaResend(to: string, subject: string, html: string) {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "orders@resend.dev",
+        from: "orders@yellowroseswag.com",
         to: to,
         subject: subject,
         html: html,
