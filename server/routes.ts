@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertOrderSchema } from "@shared/schema";
+import { sendOrderConfirmationEmail, sendOrderNotificationEmail } from "./email";
 import { z } from "zod";
 
 export async function registerRoutes(
@@ -13,6 +14,11 @@ export async function registerRoutes(
     try {
       const validated = insertOrderSchema.parse(req.body);
       const order = await storage.createOrder(validated);
+      
+      // Send emails asynchronously
+      sendOrderConfirmationEmail(order);
+      sendOrderNotificationEmail(order);
+      
       res.json(order);
     } catch (error) {
       if (error instanceof z.ZodError) {
