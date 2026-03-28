@@ -19,10 +19,11 @@ export async function registerRoutes(
       console.log("✓ Order created:", order.id);
       console.log("📧 Sending emails...");
       
-      // Send emails asynchronously
-      sendOrderConfirmationEmail(order);
-      sendOrderNotificationEmail(order);
+      // Send emails and wait for them to complete
+      await sendOrderConfirmationEmail(order);
+      await sendOrderNotificationEmail(order);
       
+      console.log("✓ All emails sent successfully");
       res.json(order);
     } catch (error) {
       console.error("❌ Error creating order:", error);
