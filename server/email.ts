@@ -44,6 +44,15 @@ async function sendEmailViaResend(to: string, subject: string, html: string) {
   }
 }
 
+// Silently handle email errors - don't block order creation
+async function sendEmailSafely(to: string, subject: string, html: string) {
+  try {
+    await sendEmailViaResend(to, subject, html);
+  } catch (error) {
+    console.error("Email failed but order succeeded:", error);
+  }
+}
+
 export async function sendOrderConfirmationEmail(order: Order) {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -68,16 +77,11 @@ export async function sendOrderConfirmationEmail(order: Order) {
     </div>
   `;
 
-  try {
-    await sendEmailViaResend(
-      order.email,
-      "Order Confirmation - Yellow Rose Swag & Design",
-      html
-    );
-  } catch (error) {
-    console.error("❌ Error in sendOrderConfirmationEmail:", error);
-    throw error;
-  }
+  await sendEmailSafely(
+    order.email,
+    "Order Confirmation - Yellow Rose Swag & Design",
+    html
+  );
 }
 
 export async function sendOrderNotificationEmail(order: Order) {
@@ -104,14 +108,9 @@ export async function sendOrderNotificationEmail(order: Order) {
     </div>
   `;
 
-  try {
-    await sendEmailViaResend(
-      "yellowroseswag@gmail.com",
-      `New Order from ${order.firstName} ${order.lastName}`,
-      html
-    );
-  } catch (error) {
-    console.error("❌ Error in sendOrderNotificationEmail:", error);
-    throw error;
-  }
+  await sendEmailSafely(
+    "yellowroseswag@gmail.com",
+    `New Order from ${order.firstName} ${order.lastName}`,
+    html
+  );
 }

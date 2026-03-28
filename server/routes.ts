@@ -17,13 +17,12 @@ export async function registerRoutes(
       const order = await storage.createOrder(validated);
       
       console.log("✓ Order created:", order.id);
-      console.log("📧 Sending emails...");
+      console.log("📧 Sending emails (async)...");
       
-      // Send emails and wait for them to complete
-      await sendOrderConfirmationEmail(order);
-      await sendOrderNotificationEmail(order);
+      // Send emails asynchronously - don't block the response
+      sendOrderConfirmationEmail(order).catch(console.error);
+      sendOrderNotificationEmail(order).catch(console.error);
       
-      console.log("✓ All emails sent successfully");
       res.json(order);
     } catch (error) {
       console.error("❌ Error creating order:", error);
