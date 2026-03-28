@@ -81,23 +81,18 @@ export default function Home() {
 
   const createOrderMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      console.log("🚀 Sending order to API...", data);
       const response = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...data,
-          estimatedCost: 5000, // Placeholder: $50 - would be calculated dynamically
+          estimatedCost: 5000,
         }),
       });
-      console.log("📬 API Response Status:", response.status);
-      const json = await response.json();
-      console.log("📦 API Response Data:", json);
-      if (!response.ok) throw new Error(`Failed to create order: ${response.status}`);
-      return json;
+      if (!response.ok) throw new Error("Failed to create order");
+      return response.json();
     },
     onSuccess: () => {
-      console.log("✓ Order created successfully!");
       setSubmitStatus("success");
       setFormData({
         firstName: "",
@@ -110,9 +105,7 @@ export default function Home() {
       });
       setTimeout(() => setSubmitStatus("idle"), 3000);
     },
-    onError: (error) => {
-      console.error("❌ Order failed:", error);
-      console.error("   Error details:", (error as Error).message);
+    onError: () => {
       setSubmitStatus("error");
       setTimeout(() => setSubmitStatus("idle"), 3000);
     },
@@ -128,7 +121,6 @@ export default function Home() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("📝 Form submitted with data:", formData);
     createOrderMutation.mutate(formData);
   };
 
