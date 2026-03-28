@@ -91,8 +91,10 @@ export default function Home() {
         }),
       });
       console.log("📬 API Response Status:", response.status);
-      if (!response.ok) throw new Error("Failed to create order");
-      return response.json();
+      const json = await response.json();
+      console.log("📦 API Response Data:", json);
+      if (!response.ok) throw new Error(`Failed to create order: ${response.status}`);
+      return json;
     },
     onSuccess: () => {
       console.log("✓ Order created successfully!");
@@ -110,6 +112,7 @@ export default function Home() {
     },
     onError: (error) => {
       console.error("❌ Order failed:", error);
+      console.error("   Error details:", (error as Error).message);
       setSubmitStatus("error");
       setTimeout(() => setSubmitStatus("idle"), 3000);
     },
