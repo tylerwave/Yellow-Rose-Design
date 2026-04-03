@@ -326,7 +326,9 @@ export default function Home() {
               <img 
                 src={logoImg} 
                 alt="Yellow Rose Logo" 
-                className="w-full h-full object-cover contrast-[1.15] saturate-[1.3] brightness-[1.05] drop-shadow-md scale-[1.7]" 
+                className="w-full h-full object-cover drop-shadow-md scale-[1.7]"
+                loading="eager"
+                decoding="async" 
               />
             </div>
             <div className="flex flex-col">
@@ -405,7 +407,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden bg-primary">
         <div className="absolute inset-0 z-0 will-change-transform">
-          <img src={heroImg} alt="Workshop Background" className="w-full h-full object-cover opacity-30 mix-blend-overlay scale-105 animate-slow-zoom" />
+          <img src={heroImg} alt="Workshop Background" className="w-full h-full object-cover opacity-30 mix-blend-overlay scale-105 animate-slow-zoom" loading="eager" decoding="async" />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-transparent to-primary/90" />
         </div>
         
@@ -490,7 +492,9 @@ export default function Home() {
                 <img 
                   src={storyPhoto} 
                   alt="Our Story" 
-                  className="relative rounded-2xl shadow-2xl w-full aspect-[4/5] object-cover contrast-[1.1] brightness-[1.05] saturate-[1.1] shadow-gold/20" 
+                  className="relative rounded-2xl shadow-2xl w-full aspect-[4/5] object-cover shadow-gold/20"
+                  loading="lazy"
+                  decoding="async" 
                 />
               </div>
             </ScrollReveal>
@@ -592,7 +596,9 @@ export default function Home() {
                 <img 
                   src={group.image} 
                   alt={group.title} 
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.15] brightness-[1.05] saturate-[1.2] sharpness-[1.2]" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
                   <h3 className="text-white font-serif text-xl sm:text-2xl font-bold mb-2">{group.title}</h3>
@@ -634,7 +640,9 @@ export default function Home() {
                       <img 
                         src={item.src} 
                         alt={item.title} 
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.15] brightness-[1.05] saturate-[1.2] sharpness-[1.2]" 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                        decoding="async" 
                       />
                       <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center backdrop-blur-[2px]">
                         <p className="text-white font-serif text-lg font-bold drop-shadow-md">{item.title}</p>
@@ -661,7 +669,8 @@ export default function Home() {
               <img 
                 src={selectedImage.src} 
                 alt={selectedImage.title} 
-                className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl contrast-[1.1] brightness-[1.05] saturate-[1.1]" 
+                className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                decoding="async" 
               />
               <p className="text-white font-serif text-2xl font-bold mt-6 text-center px-4 drop-shadow-lg">
                 {selectedImage.title}
@@ -686,7 +695,7 @@ export default function Home() {
             {/* Product 1 */}
             <motion.div variants={staggerItem} whileHover={{ y: -6 }} className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-shadow duration-500 overflow-hidden border border-border/50">
               <div className="aspect-[4/5] overflow-hidden">
-                <img src={apparelImg} alt="Custom Apparel" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src={apparelImg} alt="Custom Apparel" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
               </div>
               <div className="p-8 sm:p-10">
                 <h3 className="text-2xl font-serif font-bold text-primary mb-4">Custom Apparel</h3>
@@ -700,7 +709,7 @@ export default function Home() {
             {/* Product 2 */}
             <motion.div variants={staggerItem} whileHover={{ y: -6 }} className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-shadow duration-500 overflow-hidden border border-border/50">
               <div className="aspect-[4/5] overflow-hidden">
-                <img src={glasswareImg} alt="Etched Glassware" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src={glasswareImg} alt="Etched Glassware" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
               </div>
               <div className="p-8 sm:p-10">
                 <h3 className="text-2xl font-serif font-bold text-primary mb-4">Etched Glassware</h3>
