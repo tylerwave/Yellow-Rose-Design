@@ -1,7 +1,9 @@
-import { Instagram, Facebook, Phone, Mail, MapPin, CheckCircle, Clock, Users, Star, ArrowRight, Image as ImageIcon, X, Heart, Share2, Link2, MessageCircle } from "lucide-react";
-import { useState } from "react";
-import { Link } from "wouter";
+import { Instagram, Facebook, Phone, Mail, MapPin, CheckCircle, Clock, Star, ArrowRight, Image as ImageIcon, X, Heart, Share2, Link2, MessageCircle } from "lucide-react";
+import { useState, useRef } from "react";
+
 import { useMutation } from "@tanstack/react-query";
+import { motion, useInView } from "framer-motion";
+import Chatbot from "@/components/Chatbot";
 
 import logoImg from "@/assets/images/logo.png";
 import heroImg from "@/assets/images/hero.png";
@@ -64,6 +66,46 @@ import totePhoto2 from "@assets/20251028_194231_1772243294206.jpg";
 
 // Import personal story photo
 import storyPhoto from "@assets/20250530_232612_1772246249932.jpg";
+
+function ScrollReveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.7, delay, ease: [0.25, 0.4, 0.25, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function StaggerChildren({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.15 } },
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const } },
+} as const;
 
 export default function Home() {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
@@ -362,40 +404,64 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden bg-primary">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 will-change-transform">
           <img src={heroImg} alt="Workshop Background" className="w-full h-full object-cover opacity-30 mix-blend-overlay scale-105 animate-slow-zoom" />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-transparent to-primary/90" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 mb-8 animate-in slide-in-from-bottom-4 duration-700">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/10 mb-8"
+            >
               <Star className="w-4 h-4 text-secondary fill-secondary" />
               <span className="text-sm font-bold text-white uppercase tracking-[0.3em]">Elgin's Premier Custom Shop</span>
-            </div>
+            </motion.div>
             
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[0.9] mb-8 animate-in slide-in-from-bottom-6 duration-1000 delay-150">
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
+              className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[0.9] mb-8"
+            >
               Quality First. <br />
               <span className="text-secondary italic font-serif font-medium">Family</span> Always.
-            </h1>
+            </motion.h1>
             
-            <p className="text-xl md:text-2xl text-white/70 max-w-2xl mb-12 leading-relaxed animate-in slide-in-from-bottom-8 duration-1000 delay-300">
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="text-lg sm:text-xl md:text-2xl text-white/70 max-w-2xl mb-12 leading-relaxed"
+            >
               Yellow Rose Swag & Design creates bespoke apparel and etched glassware that celebrates your story. Owned by Seger Tyler.
-            </p>
+            </motion.p>
             
-            <div className="flex flex-col sm:flex-row gap-6 animate-in slide-in-from-bottom-10 duration-1000 delay-500">
-              <a href="#contact" className="group bg-secondary text-primary px-10 py-5 rounded-full font-extrabold text-lg flex items-center justify-center gap-3 hover:bg-yellow-400 transition-all shadow-2xl hover:shadow-secondary/40 active:scale-95">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6"
+            >
+              <a href="#contact" className="group bg-secondary text-primary px-8 sm:px-10 py-4 sm:py-5 rounded-full font-extrabold text-base sm:text-lg flex items-center justify-center gap-3 hover:bg-yellow-400 transition-all shadow-2xl hover:shadow-secondary/40 active:scale-95">
                 Start Your Project <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
               </a>
-              <a href="#gallery" className="px-10 py-5 rounded-full font-bold text-lg border-2 border-white/20 text-white hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+              <a href="#gallery" className="px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg border-2 border-white/20 text-white hover:bg-white/10 transition-all flex items-center justify-center gap-2">
                 View Showcase
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Floating Stat Badges */}
-        <div className="absolute bottom-12 right-12 hidden lg:flex flex-col gap-6 animate-in fade-in duration-1000 delay-700">
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="absolute bottom-12 right-12 hidden lg:flex flex-col gap-6"
+        >
           <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 flex items-center gap-4">
             <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center">
               <CheckCircle className="w-6 h-6 text-secondary" />
@@ -405,122 +471,139 @@ export default function Home() {
               <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Unique Designs</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Our Story Section */}
-      <section id="about" className="py-28 bg-white relative overflow-hidden">
+      <section id="about" className="py-20 sm:py-28 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2">
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+            <ScrollReveal className="lg:w-1/2">
               <div className="relative">
-                <div className="absolute -inset-4 bg-secondary/20 rounded-2xl rotate-3" />
+                <motion.div
+                  initial={{ rotate: 0, scale: 0.95 }}
+                  whileInView={{ rotate: 3, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="absolute -inset-4 bg-secondary/20 rounded-2xl"
+                />
                 <img 
                   src={storyPhoto} 
                   alt="Our Story" 
                   className="relative rounded-2xl shadow-2xl w-full aspect-[4/5] object-cover contrast-[1.1] brightness-[1.05] saturate-[1.1] shadow-gold/20" 
                 />
               </div>
-            </div>
+            </ScrollReveal>
             <div className="lg:w-1/2">
-              <h2 className="text-5xl md:text-6xl font-bold text-primary mb-8">Our Story</h2>
-              <div className="h-1.5 w-24 bg-secondary mb-10 rounded-full" />
-              <div className="space-y-6 text-xl text-foreground/80 leading-relaxed">
-                <p className="font-serif italic text-2xl text-primary mb-8">
-                  "Yellow Rose Swag & Design, LLC is my baby!!"
-                </p>
-                <p>
-                  I'm a nurse who LOVES to make CUSTOM t-shirts, apparel, etc. We are a small business, family-owned and operated.
-                </p>
-                <p>
-                  This company was born from the desire to honor my grandmother. The yellow rose was my Nanny's favorite flower! She was my inspiration! What better way to honor her memory.
-                </p>
-              </div>
+              <ScrollReveal delay={0.2}>
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-8">Our Story</h2>
+                <div className="h-1.5 w-24 bg-secondary mb-10 rounded-full" />
+                <div className="space-y-6 text-lg sm:text-xl text-foreground/80 leading-relaxed">
+                  <p className="font-serif italic text-xl sm:text-2xl text-primary mb-8">
+                    "Yellow Rose Swag & Design, LLC is my baby!!"
+                  </p>
+                  <p>
+                    I'm a nurse who LOVES to make CUSTOM t-shirts, apparel, etc. We are a small business, family-owned and operated.
+                  </p>
+                  <p>
+                    This company was born from the desire to honor my grandmother. The yellow rose was my Nanny's favorite flower! She was my inspiration! What better way to honor her memory.
+                  </p>
+                </div>
+              </ScrollReveal>
               
-              <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 pt-12 border-t border-border">
-                <div className="text-center">
+              <StaggerChildren className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 pt-12 border-t border-border">
+                <motion.div variants={staggerItem} className="text-center">
                   <div className="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Star className="w-6 h-6 text-secondary fill-secondary" />
                   </div>
                   <p className="font-bold text-primary">Family Owned</p>
-                </div>
-                <div className="text-center">
+                </motion.div>
+                <motion.div variants={staggerItem} className="text-center">
                   <div className="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Clock className="w-6 h-6 text-secondary" />
                   </div>
                   <p className="font-bold text-primary">Quick Delivery</p>
-                </div>
-                <div className="text-center">
+                </motion.div>
+                <motion.div variants={staggerItem} className="text-center">
                   <div className="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-6 h-6 text-secondary" />
                   </div>
                   <p className="font-bold text-primary">Nurse Craft</p>
-                </div>
-              </div>
+                </motion.div>
+              </StaggerChildren>
             </div>
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
+      <section className="py-16 sm:py-24 bg-primary text-primary-foreground relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 skew-x-12 transform translate-x-1/2" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
-            {/* ... keeping simplified values grid ... */}
-            <div className="group">
-              <h3 className="text-2xl font-serif font-bold mb-4">Quality Focus</h3>
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-16 text-center">
+            <motion.div variants={staggerItem} className="group">
+              <motion.div whileHover={{ scale: 1.05, rotate: 2 }} className="inline-block">
+                <h3 className="text-2xl font-serif font-bold mb-4">Quality Focus</h3>
+              </motion.div>
               <p className="text-primary-foreground/60">Premium materials for lasting designs.</p>
-            </div>
-            <div className="group">
-              <h3 className="text-2xl font-serif font-bold mb-4">Quick Turnaround</h3>
+            </motion.div>
+            <motion.div variants={staggerItem} className="group">
+              <motion.div whileHover={{ scale: 1.05, rotate: -2 }} className="inline-block">
+                <h3 className="text-2xl font-serif font-bold mb-4">Quick Turnaround</h3>
+              </motion.div>
               <p className="text-primary-foreground/60">Fast processing for your custom needs.</p>
-            </div>
-            <div className="group">
-              <h3 className="text-2xl font-serif font-bold mb-4">Personal Touch</h3>
+            </motion.div>
+            <motion.div variants={staggerItem} className="group">
+              <motion.div whileHover={{ scale: 1.05, rotate: 2 }} className="inline-block">
+                <h3 className="text-2xl font-serif font-bold mb-4">Personal Touch</h3>
+              </motion.div>
               <p className="text-primary-foreground/60">Every order treated like family.</p>
-            </div>
-          </div>
+            </motion.div>
+          </StaggerChildren>
         </div>
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="py-24 bg-white/40">
+      <section id="gallery" className="py-16 sm:py-24 bg-white/40">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-6xl font-bold text-primary mb-6">Design Showcase</h2>
-              <p className="text-lg text-foreground/70">
-                Explore our work by category. Click on a group to view all custom designs in that collection.
-              </p>
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-primary mb-6">Design Showcase</h2>
+                <p className="text-base sm:text-lg text-foreground/70">
+                  Explore our work by category. Click on a group to view all custom designs in that collection.
+                </p>
+              </div>
+              <a href="https://instagram.com/yellowrose_swag" target="_blank" rel="noreferrer" className="text-secondary font-bold flex items-center gap-2 hover:underline text-lg">
+                Follow us for more <Instagram className="w-5 h-5" />
+              </a>
             </div>
-            <a href="https://instagram.com/yellowrose_swag" target="_blank" rel="noreferrer" className="text-secondary font-bold flex items-center gap-2 hover:underline text-lg">
-              Follow us for more <Instagram className="w-5 h-5" />
-            </a>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10">
             {galleryData.map((group) => (
-              <div 
-                key={group.id} 
+              <motion.div 
+                key={group.id}
+                variants={staggerItem}
+                whileHover={{ y: -8 }}
                 onClick={() => setSelectedGroup(group.id)}
-                className="group cursor-pointer relative aspect-square overflow-hidden rounded-xl shadow-lg bg-white border border-border/50 hover:shadow-2xl transition-all duration-500"
+                className="group cursor-pointer relative aspect-square overflow-hidden rounded-xl shadow-lg bg-white border border-border/50 hover:shadow-2xl transition-shadow duration-500"
               >
                 <img 
                   src={group.image} 
                   alt={group.title} 
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 contrast-[1.15] brightness-[1.05] saturate-[1.2] sharpness-[1.2]" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent flex flex-col justify-end p-8">
-                  <h3 className="text-white font-serif text-2xl font-bold mb-2">{group.title}</h3>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
+                  <h3 className="text-white font-serif text-xl sm:text-2xl font-bold mb-2">{group.title}</h3>
                   <p className="text-white/80 text-xs mb-4 line-clamp-2">{group.description}</p>
                   <span className="text-secondary font-bold flex items-center gap-2 text-sm group-hover:translate-x-2 transition-transform">
                     View ({group.items.length}) <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
 
         {/* Gallery Modal */}
@@ -589,47 +672,47 @@ export default function Home() {
       </section>
 
       {/* Products Showcase */}
-      <section id="products" className="py-28 bg-background">
+      <section id="products" className="py-20 sm:py-28 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-5xl md:text-7xl font-bold text-primary mb-8">Our Specialties</h2>
+          <ScrollReveal className="text-center max-w-3xl mx-auto mb-14 sm:mb-20">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-primary mb-8">Our Specialties</h2>
             <div className="h-1.5 w-24 bg-secondary mx-auto mb-8 rounded-full" />
-            <p className="text-xl text-foreground/70">
+            <p className="text-lg sm:text-xl text-foreground/70">
               Personalized solutions for every occasion. If you can dream it, we can design it.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
             {/* Product 1 */}
-            <div className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-border/50">
+            <motion.div variants={staggerItem} whileHover={{ y: -6 }} className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-shadow duration-500 overflow-hidden border border-border/50">
               <div className="aspect-[4/5] overflow-hidden">
                 <img src={apparelImg} alt="Custom Apparel" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
-              <div className="p-10">
+              <div className="p-8 sm:p-10">
                 <h3 className="text-2xl font-serif font-bold text-primary mb-4">Custom Apparel</h3>
                 <p className="text-foreground/60 mb-8 leading-relaxed">Premium t-shirts, hoodies, and long-sleeves customized for your family, team, or business.</p>
                 <a href="#contact" className="text-secondary font-bold inline-flex items-center gap-2 group/link">
                   Get Started <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Product 2 */}
-            <div className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-border/50">
+            <motion.div variants={staggerItem} whileHover={{ y: -6 }} className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-shadow duration-500 overflow-hidden border border-border/50">
               <div className="aspect-[4/5] overflow-hidden">
                 <img src={glasswareImg} alt="Etched Glassware" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
-              <div className="p-10">
+              <div className="p-8 sm:p-10">
                 <h3 className="text-2xl font-serif font-bold text-primary mb-4">Etched Glassware</h3>
                 <p className="text-foreground/60 mb-8 leading-relaxed">Elegant glassware with permanent, high-definition etching. Perfect for gifts and celebrations.</p>
                 <a href="#contact" className="text-secondary font-bold inline-flex items-center gap-2 group/link">
                   Design Glass <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Product 3 */}
-            <div className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-border/50 flex flex-col">
+            <motion.div variants={staggerItem} whileHover={{ y: -6 }} className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-shadow duration-500 overflow-hidden border border-border/50 flex flex-col">
               <div className="aspect-[4/5] bg-gradient-to-br from-primary/5 to-secondary/10 flex flex-col items-center justify-center p-12 text-center relative">
                 <ImageIcon className="w-20 h-20 text-secondary mb-6 opacity-40" />
                 <h4 className="text-3xl font-serif font-bold text-primary">Custom Totes & More</h4>
@@ -638,7 +721,7 @@ export default function Home() {
                   <p className="text-sm font-medium text-secondary uppercase tracking-widest">Seasonal Specialties</p>
                 </div>
               </div>
-              <div className="p-10 flex-1 flex flex-col justify-between">
+              <div className="p-8 sm:p-10 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="text-2xl font-serif font-bold text-primary mb-4">Stockings & Bags</h3>
                   <p className="text-foreground/60 mb-8 leading-relaxed">From holiday stockings to everyday canvas tote bags, we create functional art for your lifestyle.</p>
@@ -647,14 +730,15 @@ export default function Home() {
                   View Catalog <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                 </a>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </StaggerChildren>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-28 bg-white/30 backdrop-blur-sm">
+      <section id="contact" className="py-20 sm:py-28 bg-white/30 backdrop-blur-sm">
         <div className="container mx-auto px-4 max-w-6xl">
+          <ScrollReveal>
           <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-border/30 flex flex-col lg:flex-row">
             
             {/* Contact Info */}
@@ -857,21 +941,32 @@ export default function Home() {
               </form>
             </div>
           </div>
+        </ScrollReveal>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-primary border-t border-white/5 text-primary-foreground/40 py-16 pb-24 md:pb-16 text-center">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center mb-10">
-            <img src={logoImg} alt="Yellow Rose Swag" className="h-24 w-24 object-contain brightness-0 invert mb-6" />
-            <h4 className="text-2xl font-serif font-bold text-white mb-2">Yellow Rose Swag & Design, LLC</h4>
-            <p className="text-secondary font-semibold uppercase tracking-[0.3em] text-sm">Elgin • South Carolina</p>
+      <ScrollReveal>
+        <footer className="bg-primary border-t border-white/5 text-primary-foreground/40 py-16 pb-24 md:pb-16 text-center">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col items-center mb-10">
+              <motion.img
+                src={logoImg}
+                alt="Yellow Rose Swag"
+                className="h-24 w-24 object-contain brightness-0 invert mb-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.8 }}
+              />
+              <h4 className="text-2xl font-serif font-bold text-white mb-2">Yellow Rose Swag & Design, LLC</h4>
+              <p className="text-secondary font-semibold uppercase tracking-[0.3em] text-sm">Elgin • South Carolina</p>
+            </div>
+            <div className="h-px w-full max-w-lg bg-white/10 mx-auto mb-10" />
+            <p className="text-sm">© {new Date().getFullYear()} Yellow Rose Swag & Design. Quality first, Family always.</p>
           </div>
-          <div className="h-px w-full max-w-lg bg-white/10 mx-auto mb-10" />
-          <p className="text-sm">© {new Date().getFullYear()} Yellow Rose Swag & Design. Quality first, Family always.</p>
-        </div>
-      </footer>
+        </footer>
+      </ScrollReveal>
+
+      <Chatbot />
     </div>
   );
 }
