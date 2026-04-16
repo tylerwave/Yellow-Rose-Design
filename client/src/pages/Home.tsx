@@ -4,6 +4,10 @@ import { useState, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { motion, useInView } from "framer-motion";
 import Chatbot from "@/components/Chatbot";
+import WheelTimePicker from "@/components/WheelTimePicker";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { format } from "date-fns";
 
 import logoImg from "@/assets/images/logo.png";
 import heroImg from "@/assets/images/hero.png";
@@ -872,49 +876,62 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <label htmlFor="cb-date" className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">Preferred Date</label>
-                    <input
-                      id="cb-date"
-                      name="preferredDate"
-                      type="date"
-                      required
-                      min={new Date().toISOString().split("T")[0]}
-                      value={callbackData.preferredDate}
-                      onChange={handleCallbackChange}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition"
-                      data-testid="input-callback-date"
-                    />
+                    <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">Preferred Date</label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <button
+                          type="button"
+                          className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition text-left flex items-center justify-between hover:border-secondary/60"
+                          data-testid="button-callback-date"
+                        >
+                          <span className={callbackData.preferredDate ? "text-foreground" : "text-muted-foreground"}>
+                            {callbackData.preferredDate
+                              ? format(new Date(callbackData.preferredDate + "T00:00:00"), "EEEE, MMMM d, yyyy")
+                              : "Pick a date..."}
+                          </span>
+                          <CalendarClock className="w-5 h-5 text-secondary" />
+                        </button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={callbackData.preferredDate ? new Date(callbackData.preferredDate + "T00:00:00") : undefined}
+                          onSelect={(date) => {
+                            if (date) {
+                              const yyyy = date.getFullYear();
+                              const mm = String(date.getMonth() + 1).padStart(2, "0");
+                              const dd = String(date.getDate()).padStart(2, "0");
+                              setCallbackData((prev) => ({ ...prev, preferredDate: `${yyyy}-${mm}-${dd}` }));
+                            }
+                          }}
+                          disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
+                    <label className="block text-sm font-bold text-foreground mb-3 uppercase tracking-wide">
                       <CalendarClock className="w-4 h-4 inline mr-1" />
                       Best Time to Call Between
                     </label>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <input
-                          name="bestTimeStart"
-                          type="time"
-                          required
+                        <p className="text-xs font-bold text-muted-foreground mb-2 text-center uppercase tracking-wider">From</p>
+                        <WheelTimePicker
                           value={callbackData.bestTimeStart}
-                          onChange={handleCallbackChange}
-                          className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition"
-                          data-testid="input-callback-time-start"
+                          onChange={(v) => setCallbackData((prev) => ({ ...prev, bestTimeStart: v }))}
+                          testIdPrefix="callback-start"
                         />
-                        <p className="text-xs text-muted-foreground mt-1 ml-1">From</p>
                       </div>
                       <div>
-                        <input
-                          name="bestTimeEnd"
-                          type="time"
-                          required
+                        <p className="text-xs font-bold text-muted-foreground mb-2 text-center uppercase tracking-wider">To</p>
+                        <WheelTimePicker
                           value={callbackData.bestTimeEnd}
-                          onChange={handleCallbackChange}
-                          className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition"
-                          data-testid="input-callback-time-end"
+                          onChange={(v) => setCallbackData((prev) => ({ ...prev, bestTimeEnd: v }))}
+                          testIdPrefix="callback-end"
                         />
-                        <p className="text-xs text-muted-foreground mt-1 ml-1">To</p>
                       </div>
                     </div>
                   </div>
