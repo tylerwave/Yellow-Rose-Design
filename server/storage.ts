@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type Order, type InsertOrder } from "@shared/schema";
+import { type User, type InsertUser, type Order, type InsertOrder, type CallbackRequest, type InsertCallbackRequest } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -10,15 +10,19 @@ export interface IStorage {
   getOrdersByEmail(email: string): Promise<Order[]>;
   updateOrderPaymentStatus(id: string, paymentStatus: string, paymentIntentId?: string): Promise<Order>;
   getAllOrders(): Promise<Order[]>;
+  createCallbackRequest(request: InsertCallbackRequest): Promise<CallbackRequest>;
+  getAllCallbackRequests(): Promise<CallbackRequest[]>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
   private orders: Map<string, Order>;
+  private callbackRequests: Map<string, CallbackRequest>;
 
   constructor() {
     this.users = new Map();
     this.orders = new Map();
+    this.callbackRequests = new Map();
   }
 
   async getUser(id: string): Promise<User | undefined> {
@@ -78,6 +82,22 @@ export class MemStorage implements IStorage {
 
   async getAllOrders(): Promise<Order[]> {
     return Array.from(this.orders.values());
+  }
+
+  async createCallbackRequest(insertRequest: InsertCallbackRequest): Promise<CallbackRequest> {
+    const id = randomUUID();
+    const request: CallbackRequest = {
+      ...insertRequest,
+      id,
+      status: "pending",
+      createdAt: new Date(),
+    };
+    this.callbackRequests.set(id, request);
+    return request;
+  }
+
+  async getAllCallbackRequests(): Promise<CallbackRequest[]> {
+    return Array.from(this.callbackRequests.values());
   }
 }
 

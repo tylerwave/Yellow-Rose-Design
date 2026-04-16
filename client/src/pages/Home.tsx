@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Phone, Mail, MapPin, CheckCircle, Clock, Star, ArrowRight, Image as ImageIcon, X, Heart, Share2, Link2, MessageCircle } from "lucide-react";
+import { Instagram, Facebook, Phone, Mail, MapPin, CheckCircle, Clock, Star, ArrowRight, Image as ImageIcon, X, Heart, Share2, Link2, MessageCircle, CalendarClock, PhoneCall } from "lucide-react";
 import { useState, useRef } from "react";
 
 import { useMutation } from "@tanstack/react-query";
@@ -120,6 +120,57 @@ export default function Home() {
     quantity: 1,
   });
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const [callbackData, setCallbackData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    preferredDate: "",
+    bestTimeStart: "09:00",
+    bestTimeEnd: "17:00",
+    reason: "",
+  });
+  const [callbackStatus, setCallbackStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const callbackMutation = useMutation({
+    mutationFn: async (data: typeof callbackData) => {
+      const response = await fetch("/api/callbacks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error("Failed to schedule callback");
+      return response.json();
+    },
+    onSuccess: () => {
+      setCallbackStatus("success");
+      setCallbackData({
+        name: "",
+        phone: "",
+        email: "",
+        preferredDate: "",
+        bestTimeStart: "09:00",
+        bestTimeEnd: "17:00",
+        reason: "",
+      });
+      setTimeout(() => setCallbackStatus("idle"), 5000);
+    },
+    onError: () => {
+      setCallbackStatus("error");
+      setTimeout(() => setCallbackStatus("idle"), 5000);
+    },
+  });
+
+  const handleCallbackChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setCallbackData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCallbackSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    callbackMutation.mutate(callbackData);
+  };
+
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(127);
   const [shareOpen, setShareOpen] = useState(false);
@@ -741,6 +792,177 @@ export default function Home() {
               </div>
             </motion.div>
           </StaggerChildren>
+        </div>
+      </section>
+
+      {/* Callback Scheduling Section */}
+      <section id="callback" className="py-20 sm:py-28 bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+        <div className="container mx-auto px-4 max-w-5xl relative z-10">
+          <ScrollReveal className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/20 rounded-full mb-5">
+              <PhoneCall className="w-4 h-4 text-secondary" />
+              <span className="text-sm font-bold text-secondary uppercase tracking-widest">Schedule a Call</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold mb-5">Request a Callback</h2>
+            <p className="text-lg text-primary-foreground/70">
+              Prefer to talk it through? Tell us when you're free and we'll give you a call to discuss your custom design.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.15}>
+            <div className="bg-white text-foreground rounded-3xl shadow-2xl p-8 sm:p-12 border border-secondary/20">
+              {callbackStatus === "success" ? (
+                <div className="text-center py-12" data-testid="status-callback-success">
+                  <div className="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle className="w-10 h-10 text-secondary" />
+                  </div>
+                  <h3 className="text-3xl font-serif font-bold mb-3">You're on the calendar!</h3>
+                  <p className="text-lg text-muted-foreground max-w-md mx-auto">
+                    We've received your request and will give you a call during your preferred time. A confirmation has been sent to your email.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleCallbackSubmit} className="space-y-6" data-testid="form-callback">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="cb-name" className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">Name</label>
+                      <input
+                        id="cb-name"
+                        name="name"
+                        type="text"
+                        required
+                        value={callbackData.name}
+                        onChange={handleCallbackChange}
+                        placeholder="Jane Doe"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition"
+                        data-testid="input-callback-name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="cb-phone" className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">Number</label>
+                      <input
+                        id="cb-phone"
+                        name="phone"
+                        type="tel"
+                        required
+                        value={callbackData.phone}
+                        onChange={handleCallbackChange}
+                        placeholder="(555) 123-4567"
+                        className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition"
+                        data-testid="input-callback-phone"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="cb-email" className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">Email</label>
+                    <input
+                      id="cb-email"
+                      name="email"
+                      type="email"
+                      required
+                      value={callbackData.email}
+                      onChange={handleCallbackChange}
+                      placeholder="jane@example.com"
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition"
+                      data-testid="input-callback-email"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="cb-date" className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">Preferred Date</label>
+                    <input
+                      id="cb-date"
+                      name="preferredDate"
+                      type="date"
+                      required
+                      min={new Date().toISOString().split("T")[0]}
+                      value={callbackData.preferredDate}
+                      onChange={handleCallbackChange}
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition"
+                      data-testid="input-callback-date"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
+                      <CalendarClock className="w-4 h-4 inline mr-1" />
+                      Best Time to Call Between
+                    </label>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <input
+                          name="bestTimeStart"
+                          type="time"
+                          required
+                          value={callbackData.bestTimeStart}
+                          onChange={handleCallbackChange}
+                          className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition"
+                          data-testid="input-callback-time-start"
+                        />
+                        <p className="text-xs text-muted-foreground mt-1 ml-1">From</p>
+                      </div>
+                      <div>
+                        <input
+                          name="bestTimeEnd"
+                          type="time"
+                          required
+                          value={callbackData.bestTimeEnd}
+                          onChange={handleCallbackChange}
+                          className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition"
+                          data-testid="input-callback-time-end"
+                        />
+                        <p className="text-xs text-muted-foreground mt-1 ml-1">To</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="cb-reason" className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">Reason for Call</label>
+                    <textarea
+                      id="cb-reason"
+                      name="reason"
+                      required
+                      rows={4}
+                      value={callbackData.reason}
+                      onChange={handleCallbackChange}
+                      placeholder="Tell us a bit about what you'd like to discuss — apparel order, glassware design, event swag, etc."
+                      className="w-full px-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-secondary transition resize-none"
+                      data-testid="input-callback-reason"
+                    />
+                  </div>
+
+                  {callbackStatus === "error" && (
+                    <div className="bg-destructive/10 border border-destructive/30 text-destructive rounded-xl p-4 text-sm" data-testid="status-callback-error">
+                      Something went wrong submitting your request. Please try again or call us directly at 318-829-7479.
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={callbackMutation.isPending}
+                    className="w-full bg-secondary hover:bg-secondary/90 text-primary font-bold py-4 px-8 rounded-xl text-lg transition-all hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    data-testid="button-callback-submit"
+                  >
+                    {callbackMutation.isPending ? (
+                      "Scheduling..."
+                    ) : (
+                      <>
+                        <PhoneCall className="w-5 h-5" />
+                        Schedule My Callback
+                      </>
+                    )}
+                  </button>
+
+                  <p className="text-xs text-center text-muted-foreground">
+                    We'll do our best to call within your selected window. You'll receive an email confirmation right away.
+                  </p>
+                </form>
+              )}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -49,3 +49,31 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+export const callbackRequests = pgTable("callback_requests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  phone: text("phone").notNull(),
+  email: text("email").notNull(),
+  bestTimeStart: text("best_time_start").notNull(),
+  bestTimeEnd: text("best_time_end").notNull(),
+  preferredDate: text("preferred_date").notNull(),
+  reason: text("reason").notNull(),
+  status: text("status").notNull().default("pending"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertCallbackRequestSchema = createInsertSchema(callbackRequests)
+  .omit({ id: true, status: true, createdAt: true })
+  .extend({
+    name: z.string().min(1, "Name is required"),
+    phone: z.string().min(10, "Valid phone number required"),
+    email: z.string().email("Valid email required"),
+    bestTimeStart: z.string().min(1, "Start time required"),
+    bestTimeEnd: z.string().min(1, "End time required"),
+    preferredDate: z.string().min(1, "Preferred date required"),
+    reason: z.string().min(5, "Please provide a reason for the call"),
+  });
+
+export type InsertCallbackRequest = z.infer<typeof insertCallbackRequestSchema>;
+export type CallbackRequest = typeof callbackRequests.$inferSelect;

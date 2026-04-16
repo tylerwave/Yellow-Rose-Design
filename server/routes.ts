@@ -1,8 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertOrderSchema } from "@shared/schema";
-import { sendOrderConfirmationEmail, sendOrderNotificationEmail } from "./email";
+import { insertOrderSchema, insertCallbackRequestSchema } from "@shared/schema";
+import { sendOrderConfirmationEmail, sendOrderNotificationEmail, sendCallbackRequestEmails } from "./email";
 import { z } from "zod";
 
 export async function registerRoutes(
@@ -73,6 +73,33 @@ export async function registerRoutes(
       res.json(order);
     } catch (error) {
       res.status(500).json({ error: "Failed to update payment status" });
+    }
+  });
+
+  // Create a callback request (appointment scheduling)
+  app.post("/api/callbacks", async (req, res) => {
+    try {
+      const validated = insertCallbackRequestSchema.parse(req.body);
+      const request = await storage.createCallbackRequest(validated);
+
+      sendCallbackRequestEmails(request).catch(console.error);
+
+      res.json(request);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ error: error.errors });
+      } else {
+        res.status(500).json({ error: "Failed to submit callback request" });
+      }
+    }
+  });
+
+  app.get("/api/admin/callbacks", async (_req, res) => {
+    try {
+      const requests = await storage.getAllCallbackRequests();
+      res.json(requests);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch callback requests" });
     }
   });
 
