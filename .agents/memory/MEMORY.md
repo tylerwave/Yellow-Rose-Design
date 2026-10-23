@@ -1,0 +1,1 @@
+- [npm override verification](npm-overrides.md) — successful incremental installs can retain stale vulnerable nested packages; verify the installed tree and lockfile.
